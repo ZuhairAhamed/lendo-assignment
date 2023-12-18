@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: lendo-test
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/lendo_database
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 8080
+
+openapi:
+  dev-url: http://localhost:8080
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+url:
+  user: https://gorest.co.in/public/v2/users
+  comment: https://gorest.co.in/public/v2/comments
+  post: https://gorest.co.in/public/v2/posts
+
+user:
+  oauth:
+    clientId=javadevjournal
+    clientSecret=1234$#@!
+    redirectUris=http://localhost:8081/login
+    user.username=javadevjournal
+    user.password=javadevjournal
+    accessTokenValidity=300
+    refreshTokenValidity=240000
