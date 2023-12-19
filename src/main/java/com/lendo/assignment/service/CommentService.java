@@ -1,8 +1,11 @@
 package com.lendo.assignment.service;
 
 import com.lendo.assignment.model.CommentModel;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 public interface CommentService {
-    Flux<CommentModel> getAllComments();
+    List<CommentModel> getAllComments();
+
+    List<CommentModel> getFilteredComment(Integer postId);
 }

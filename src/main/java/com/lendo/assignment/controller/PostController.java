@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 @Tag(name = "Posts", description = "Post's APIs")
 @RestController
@@ -32,8 +34,17 @@ public class PostController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = PostModel.class), mediaType = "application/json") }) })
     @GetMapping("/all")
-    public ResponseEntity<Flux<PostModel>> getPosts() {
+    public ResponseEntity<List<PostModel>> getPosts() {
 
         return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Filter Posts by UserId")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = PostModel.class), mediaType = "application/json") }) })
+    @GetMapping("/filter/{userId}")
+    public ResponseEntity<List<PostModel>> getPosts(@PathVariable("userId") Integer userId) {
+
+        return new ResponseEntity<>(postService.getFilteredPost(userId), HttpStatus.OK);
     }
 }

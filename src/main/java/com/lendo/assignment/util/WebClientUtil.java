@@ -3,7 +3,6 @@ package com.lendo.assignment.util;
 import com.lendo.assignment.exception.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,7 +11,6 @@ import reactor.core.publisher.Mono;
 public class WebClientUtil<T> {
 
     private final WebClient webClient;
-
 
     public WebClientUtil() {
         this.webClient = WebClient.builder().build();

@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
+import java.util.Objects;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -18,9 +21,16 @@ public class PostServiceImpl implements PostService {
     private WebClientUtil webClientUtil;
 
     @Override
-    public Flux<PostModel> getAllPosts() {
+    public List<PostModel> getAllPosts() {
 
-        return webClientUtil.getAll(url, PostModel.class);
+        Flux<PostModel> postModelFlux = webClientUtil.getAll(url, PostModel.class);
+        return postModelFlux.collectList().block();
 
+    }
+
+    @Override
+    public List<PostModel> getFilteredPost(Integer userId) {
+        Flux<PostModel> postModelFlux = webClientUtil.getAll(url, PostModel.class);
+        return Objects.requireNonNull(postModelFlux.collectList().block()).stream().filter(postModel -> postModel.getUser_id().equals(userId)).toList();
     }
 }

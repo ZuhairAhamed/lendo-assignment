@@ -3,7 +3,6 @@ package com.lendo.assignment.controller;
 import com.lendo.assignment.config.AuthRequestDTO;
 import com.lendo.assignment.config.JwtResponseDTO;
 import com.lendo.assignment.config.JwtService;
-import com.lendo.assignment.model.CommentModel;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

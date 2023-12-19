@@ -14,10 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 @Tag(name = "Users", description = "User's APIs")
 @RestController
@@ -35,7 +33,7 @@ public class UserController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = UserModel.class), mediaType = "application/json") })})
     @GetMapping("/all")
-    public ResponseEntity<Flux<UserModel>> getUsers() {
+    public ResponseEntity<List<UserModel>> getUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 }

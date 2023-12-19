@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
+import java.util.Objects;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -18,10 +21,17 @@ public class CommentServiceImpl implements CommentService {
     private WebClientUtil webClientUtil;
 
     @Override
-    public Flux<CommentModel> getAllComments() {
+    public List<CommentModel> getAllComments() {
 
-        return webClientUtil.getAll(url, CommentModel.class);
+        Flux<CommentModel> commentModelFlux = webClientUtil.getAll(url, CommentModel.class);
+        return commentModelFlux.collectList().block();
 
+    }
+
+    @Override
+    public List<CommentModel> getFilteredComment(Integer postId) {
+        Flux<CommentModel> commentModelFlux = webClientUtil.getAll(url, CommentModel.class);
+        return Objects.requireNonNull(commentModelFlux.collectList().block()).stream().filter(commentModel -> commentModel.getPost_id().equals(postId)).toList();
     }
 
 }
