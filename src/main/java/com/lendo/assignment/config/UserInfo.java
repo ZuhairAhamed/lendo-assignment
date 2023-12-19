@@ -26,17 +26,4 @@ public class UserInfo {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
 
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-
 }

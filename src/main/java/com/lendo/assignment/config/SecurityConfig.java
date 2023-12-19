@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/login").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/api/users/**", "/api/comments/**", "/api/posts/**")
+                .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated()
                 .and()
                 .sessionManagement()
@@ -65,4 +65,5 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
 }

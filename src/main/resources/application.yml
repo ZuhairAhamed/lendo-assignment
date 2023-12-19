@@ -25,12 +25,5 @@ url:
   comment: https://gorest.co.in/public/v2/comments
   post: https://gorest.co.in/public/v2/posts
 
-user:
-  oauth:
-    clientId=javadevjournal
-    clientSecret=1234$#@!
-    redirectUris=http://localhost:8081/login
-    user.username=javadevjournal
-    user.password=javadevjournal
-    accessTokenValidity=300
-    refreshTokenValidity=240000
+jwt:
+  secret: 357638792F423F4428472B4B6250655368566D597133743677397A2443264629

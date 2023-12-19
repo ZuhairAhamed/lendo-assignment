@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -18,9 +20,10 @@ public class UserServiceImpl implements UserService {
     private WebClientUtil webClientUtil;
 
     @Override
-    public Flux<UserModel> getAllUsers() {
+    public List<UserModel> getAllUsers() {
 
-        return webClientUtil.getAll(url, UserModel.class);
+        Flux<UserModel> userModelFlux = webClientUtil.getAll(url, UserModel.class);
+        return userModelFlux.collectList().block();
 
     }
 
